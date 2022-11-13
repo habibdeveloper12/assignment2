@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <!-- THE HEAD TAG PARTIAL -->
+  <%- include("../partials/head") %>
+
+  <body>
+    <!-- THE HEADER TAG PARTIAL -->
+    <%- include("../partials/header") %>
+    <main>
+      <%if (title == "addpage") {%>
+       
+      <h2 class="subtitle is-2">Hopes</h2>
+      <a href="/dashboard">DASHBOARD</a>
+      <h1>ADD NEW </h1>
+
+      <form  name="myForm" action="/hopes/" method="post">
+        <input
+          class="input"
+          type="text"
+          name="text"
+          placeholder="Contact Name"
+          value=""
+        />
+        <input
+          class="input"
+          type="email"
+          name="email"
+          placeholder="Email"
+          value=""
+        />
+        <input
+          class="input"
+          type="number"
+          name="number"
+          placeholder="Number"
+          value=""
+        />
+        <input class="button" type="submit" value="Add Contact" />
+      </form>
+      <%}%>
+    
+      <%if (title !== "addpage") {%>
+        
+        <h3 class="title is-3">Contact Name  : <%= hope.text %></h3>
+        <h3 class="title is-3">Email Address: <%= hope.email %></h3>
+        <h3 class="title is-3">Number : <%= hope.number %></h3>
+  
+        <form action="/hopes/<%= hope._id %>?_method=PUT" method="post">
+          <input
+            class="input"
+            type="text"
+            name="text"
+            placeholder="Contact Name"
+            value="<%= hope.text %>"
+          />
+          <input
+            class="input"
+            type="email"
+            name="email"
+            placeholder="Email"
+            value="<%= hope.email %>"
+          />
+          <input
+            class="input"
+            type="number"
+            name="number"
+            placeholder="Number"
+            value="<%= hope.number %>"
+          />
+          <input class="button" type="submit" value="edit hope" />
+        </form>
+        <form action="/hopes/<%= hope._id %>?_method=delete" method="post">
+          <input class="button" type="submit" value="Delete" />
+        </form>
+        <%}%>
+    
+    </main>
+    <!-- THE HEAD TAG PARTIAL -->
+    <%- include("../partials/footer") %>
+  </body>
+</html>
